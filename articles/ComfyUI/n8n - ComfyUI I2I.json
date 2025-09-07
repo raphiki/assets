@@ -1,0 +1,112 @@
+{
+  "name": "ComfyUI I2I",
+  "nodes": [
+    {
+      "parameters": {
+        "workflow": "={\n  \"5\": {\n    \"inputs\": {\n      \"filename_prefix\": \"IMG\",\n      \"images\": [\n        \"46:7\",\n        0\n      ]\n    },\n    \"class_type\": \"SaveImage\",\n    \"_meta\": {\n      \"title\": \"Save Image\"\n    }\n  },\n  \"24\": {\n    \"inputs\": {\n      \"image\": \"ComfyUI_05019_.png [output]\",\n      \"refresh\": \"refresh\"\n    },\n    \"class_type\": \"LoadImage\",\n    \"_meta\": {\n      \"title\": \"Load Image\"\n    }\n  },\n  \"47\": {\n    \"inputs\": {\n      \"rgthree_comparer\": {\n        \"images\": [\n          {\n            \"name\": \"A\",\n            \"selected\": true,\n            \"url\": \"/api/view?filename=rgthree.compare._temp_pypxc_00007_.png&type=temp&subfolder=&rand=0.77496646532664\"\n          },\n          {\n            \"name\": \"B\",\n            \"selected\": true,\n            \"url\": \"/api/view?filename=rgthree.compare._temp_pypxc_00008_.png&type=temp&subfolder=&rand=0.8412272349299089\"\n          }\n        ]\n      },\n      \"image_a\": [\n        \"24\",\n        0\n      ],\n      \"image_b\": [\n        \"46:7\",\n        0\n      ]\n    },\n    \"class_type\": \"Image Comparer (rgthree)\",\n    \"_meta\": {\n      \"title\": \"Image Comparer (rgthree)\"\n    }\n  },\n  \"46:2\": {\n    \"inputs\": {\n      \"clip_name1\": \"clip_l.safetensors\",\n      \"clip_name2\": \"t5xxl_fp8_e4m3fn_scaled.safetensors\",\n      \"type\": \"flux\",\n      \"device\": \"default\"\n    },\n    \"class_type\": \"DualCLIPLoader\",\n    \"_meta\": {\n      \"title\": \"DualCLIPLoader\"\n    }\n  },\n  \"46:3\": {\n    \"inputs\": {\n      \"conditioning\": [\n        \"46:25\",\n        0\n      ]\n    },\n    \"class_type\": \"ConditioningZeroOut\",\n    \"_meta\": {\n      \"title\": \"ConditioningZeroOut\"\n    }\n  },\n  \"46:12\": {\n    \"inputs\": {\n      \"guidance\": 2.5,\n      \"conditioning\": [\n        \"46:17\",\n        0\n      ]\n    },\n    \"class_type\": \"FluxGuidance\",\n    \"_meta\": {\n      \"title\": \"FluxGuidance\"\n    }\n  },\n  \"46:8\": {\n    \"inputs\": {\n      \"pixels\": [\n        \"24\",\n        0\n      ],\n      \"vae\": [\n        \"46:1\",\n        0\n      ]\n    },\n    \"class_type\": \"VAEEncode\",\n    \"_meta\": {\n      \"title\": \"VAE Encode\"\n    }\n  },\n  \"46:7\": {\n    \"inputs\": {\n      \"samples\": [\n        \"46:20\",\n        0\n      ],\n      \"vae\": [\n        \"46:1\",\n        0\n      ]\n    },\n    \"class_type\": \"VAEDecode\",\n    \"_meta\": {\n      \"title\": \"VAE Decode\"\n    }\n  },\n  \"46:17\": {\n    \"inputs\": {\n      \"conditioning\": [\n        \"46:25\",\n        0\n      ],\n      \"latent\": [\n        \"46:8\",\n        0\n      ]\n    },\n    \"class_type\": \"ReferenceLatent\",\n    \"_meta\": {\n      \"title\": \"ReferenceLatent\"\n    }\n  },\n  \"46:1\": {\n    \"inputs\": {\n      \"vae_name\": \"ae.safetensors\"\n    },\n    \"class_type\": \"VAELoader\",\n    \"_meta\": {\n      \"title\": \"Load VAE\"\n    }\n  },\n  \"46:25\": {\n    \"inputs\": {\n      \"text\": \"{{ $json.Prompt }}\",\n      \"clip\": [\n        \"46:2\",\n        0\n      ]\n    },\n    \"class_type\": \"CLIPTextEncode\",\n    \"_meta\": {\n      \"title\": \"CLIP Text Encode (Positive Prompt)\"\n    }\n  },\n  \"46:22\": {\n    \"inputs\": {\n      \"model_path\": \"svdq-int4_r32-flux.1-kontext-dev.safetensors\",\n      \"cache_threshold\": 0,\n      \"attention\": \"nunchaku-fp16\",\n      \"cpu_offload\": \"auto\",\n      \"device_id\": 0,\n      \"data_type\": \"bfloat16\",\n      \"i2f_mode\": \"enabled\"\n    },\n    \"class_type\": \"NunchakuFluxDiTLoader\",\n    \"_meta\": {\n      \"title\": \"Nunchaku FLUX DiT Loader\"\n    }\n  },\n  \"46:20\": {\n    \"inputs\": {\n      \"seed\": 753812996391072,\n      \"steps\": 20,\n      \"cfg\": 1,\n      \"sampler_name\": \"euler\",\n      \"scheduler\": \"simple\",\n      \"denoise\": 1,\n      \"model\": [\n        \"46:22\",\n        0\n      ],\n      \"positive\": [\n        \"46:12\",\n        0\n      ],\n      \"negative\": [\n        \"46:3\",\n        0\n      ],\n      \"latent_image\": [\n        \"46:8\",\n        0\n      ]\n    },\n    \"class_type\": \"KSampler\",\n    \"_meta\": {\n      \"title\": \"KSampler\"\n    }\n  }\n}",
+        "inputType": "binary",
+        "imageNodeId": "24"
+      },
+      "type": "n8n-nodes-comfyui-image-to-image.comfyuiImageToImage",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -32
+      ],
+      "id": "62702da9-5752-437a-97f5-6b4dfba0d677",
+      "name": "ComfyUI Image Transformer",
+      "credentials": {
+        "comfyUIApi": {
+          "id": "65aBuhUmq78FavQm",
+          "name": "ComfyUI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Image to Image Transformation",
+        "formDescription": "Select the image you want to modify and detail the modifications you want in the prompt.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Prompt",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Image",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".jpg, .png",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -256,
+        -32
+      ],
+      "id": "1ada031e-fc1f-4329-bbc0-ef933846b0ab",
+      "name": "On form submission",
+      "webhookId": "8ec0aeb8-7e84-48fd-8c40-4ab1bec5a050"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "returnBinary",
+        "completionTitle": "Your image has been modified",
+        "completionMessage": "Save it ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        -32
+      ],
+      "id": "84af7b7a-f5fd-47b7-81a7-ab8cf25b8f54",
+      "name": "Form",
+      "webhookId": "bf5f625a-8155-4bb2-b6cc-cf029c7c121a"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "ComfyUI Image Transformer": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "ComfyUI Image Transformer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "41ab488b-da2c-4ce1-aa81-1385dfd465c8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8f955b1c5f9f3c92cb33035b66407ae4adc97b3824fe0a266ebbdb5bb17536a2"
+  },
+  "id": "4MoogTNEDJ35jkAA",
+  "tags": []
+}

@@ -1,0 +1,187 @@
+{
+  "9": {
+    "inputs": {
+      "filename_prefix": "SHAKA",
+      "images": [
+        "40:8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "39:6": {
+    "inputs": {
+      "text": "```json\n{\n  \"style_name\": \"HyperReal Tree Pose Ascension\",\n\n  \"inspiration\": [\n    \"Alex Ross’s hyper-realistic comic book art\",\n    \"Moebius’s organic sci-fi linework blended with photorealistic textures\"\n  ],\n\n  \"scene\": \"A hyper-detailed, graphic novel-style depiction of a woman in **Vrksasana (Tree Pose)**, her body emanating visible waves of transformative energy against a stark white void. The realism borders on photographic, yet retains the dramatic inking and composition of high-end comics.\",\n\n  \"subjects\": [\n    {\n      \"type\": \"woman\",\n      \"description\": \"athletic yet graceful, with defined muscle tone and natural skin textures (pores, subtle freckles, fine hair)\",\n      \"position\": \"center, slightly off-center vertically for dynamic tension\",\n      \"pose\": \"Tree Pose (one leg rooted, other foot pressed against inner thigh, hands in **Anjali Mudra** at chest or extended overhead like branches)\",\n      \"size\": \"near life-sized, filling ~70% of the frame vertically\",\n      \"expression\": \"eyes closed, lips parted slightly—equal parts concentration and transcendence\",\n      \"skin_tone\": \"warm olive or deep melanin-rich (adjustable; avoid defaulting to light skin)\",\n      \"clothing\": \"fitted, textured yoga attire (e.g., **matte black leggings with a cropped, breathable top**), slightly damp with sweat\",\n      \"energy_interaction\": \"crackling energy emanates from her **chakra points** (crown, palms, soles), with visible **subtle body** (aura) shifting colors\"\n    },\n    {\n      \"type\": \"transformative energy\",\n      \"description\": \"tangible, semi-solid waves of energy resembling **bioluminescent mist or fractured glass**\",\n      \"position\": \"radiating outward from her body, densest at chakra points\",\n      \"form\": \"organic tendrils mixed with geometric shards (suggesting breaking through limitations)\",\n      \"color\": \"gradient from **deep violet (root)** to **electric blue (throat)** to **gold (crown)**\",\n      \"texture\": \"refractive, with **subsurface scattering** like ice or opal\",\n      \"movement\": \"slow, pulsing expansion—some trails dissolve into **tiny floating lotus petals or sacred geometry symbols**\"\n    },\n    {\n      \"type\": \"symbolic roots/growth\",\n      \"description\": \"faint, **glowing root-like veins** extending from her standing foot into the void (implying connection to earth)\",\n      \"position\": \"bottom of the frame, dissolving into the white background\",\n      \"style\": \"delicate, **pen-and-ink** precision with a soft glow\"\n    }\n  ],\n\n  \"style\": \"hyper-realistic graphic novel—**photorealistic textures** (skin, fabric) combined with **bold comic-book inking** (contour lines, dramatic shadows) and **painterly energy effects**\",\n\n  \"color_palette\": {\n    \"primary\": \"#1A1A1A\",   /* Near-black (subject clothing/lines) */\n    \"secondary\": \"#8B5A9F\", /* Deep amethyst (energy base) */\n    \"highlight\": \"#FFD700\", /* Gold (chakra highlights) */\n    \"shadow\": \"#4A4A4A\",    /* Cool gray (depth) */\n    \"accent\": \"#FFFFFF\"     /* Pure white (background/energy contrast) */\n  },\n\n  \"lighting\": {\n    \"source\": \"**Three-point lighting**—key light from front-left (mimicking studio photography), fill light softening shadows, **backlight** creating a rim glow on the subject’s edges\",\n    \"tone\": \"high contrast with **specular highlights** on skin and energy (like wet marble)\",\n    \"effect\": \"energy emits its own **cool light**, casting **subtle blue-violet hues** on the subject’s skin\"\n  },\n\n  \"mood\": \"**Sacred power**—a moment of quiet intensity where human and energy merge; **awe-inspiring yet intimate**\",\n\n  \"background\": {\n    \"type\": \"solid with **subtle noise texture**\",\n    \"details\": \"**Off-white (#F8F8F8)** with a **radial vignette** (darker at edges) to focus attention. **No ground plane**—subject appears suspended.\"\n  },\n\n  \"composition\": {\n    \"layout\": \"**Golden spiral** guiding the eye from her rooted foot, up her body, to the energy explosion at her crown\",\n    \"framing\": \"vertical portrait (9:16 ratio) with **asymmetrical negative space**—more room above her head for energy expansion\",\n    \"balance\": \"weight distributed unevenly (her pose mirrors the energy’s upward surge)\"\n  },\n\n  \"camera\": {\n    \"angle\": \"**Dutch tilt (5–10 degrees)** to amplify dynamism, shot from **slightly below eye level** to emphasize height\",\n    \"distance\": \"medium close-up (waist to crown in frame)\",\n    \"lens\": \"**85mm prime** for flattering compression and sharp focus\",\n    \"focus\": \"**Hyper-detailed subject** with **selective blur** on distant energy particles\"\n  },\n\n  \"medium\": \"**Digital painting over 3D base**—photorealistic textures (e.g., **ZBrush sculpting for skin**) combined with **hand-painted energy effects** and **comic-book cel-shading** for outlines\",\n\n  \"textures\": {\n    \"skin\": \"pores, fine vellus hair, **subsurface scattering** (ears/cheeks glow slightly)\",\n    \"clothing\": \"**Microfiber weave** with stretch marks and **sweat sheen**\",\n    \"energy\": \"**Glass-meets-smoke**—reflective yet diffuse, with **fractal noise** for depth\"\n  },\n\n  \"details\": {\n    \"body\": \"visible **tension in muscles** (calf of standing leg, engaged core), **individual hairs** escaping her bun\",\n    \"energy\": \"embedded with **tiny, ancient script symbols** (Sanskrit/alchemical) only visible on close inspection\",\n    \"environment\": \"absence of gravity—**floating dust particles** caught in the energy field\"\n  },\n\n  \"effects\": [\n    \"**Depth-of-field**—crisp focus on her face/hands, softening toward the energy edges\",\n    \"**Motion lines** (comic-style) trailing her extended limbs, suggesting slow, deliberate movement\",\n    \"**Chromatic aberration** on energy highlights for a ‘living light’ effect\",\n    \"**Halftone patterns** in shadows (subtle, like old-school comics) for texture\"\n  ],\n\n  \"themes\": [\n    \"**Embodied spirituality**—physical discipline as a vessel for transformation\",\n    \"**Duality of strength and surrender**—rooted yet reaching, solid yet luminous\"\n  ],\n\n  \"usage_notes\": [\n    \"For **print media**, enhance the **inking layer** for crisper lines at high resolution. For **digital**, animate the energy tendrils with a **gentle pulse** (2–3 sec loop).\",\n    \"Pair with **bold, minimalist typography** (e.g., **Bebas Neue**) for titles—avoid competing with the intricate details.\"\n  ]\n}\n```",
+      "clip": [
+        "39:32",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "39:32": {
+    "inputs": {
+      "model_type": "flux.1",
+      "text_encoder1": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "text_encoder2": "clip_l.safetensors",
+      "t5_min_length": 512
+    },
+    "class_type": "NunchakuTextEncoderLoaderV2",
+    "_meta": {
+      "title": "Nunchaku Text Encoder Loader V2"
+    }
+  },
+  "40:25": {
+    "inputs": {
+      "noise_seed": 617912223649612
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "40:13": {
+    "inputs": {
+      "noise": [
+        "40:25",
+        0
+      ],
+      "guider": [
+        "40:22",
+        0
+      ],
+      "sampler": [
+        "40:16",
+        0
+      ],
+      "sigmas": [
+        "40:17",
+        0
+      ],
+      "latent_image": [
+        "40:37",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "40:8": {
+    "inputs": {
+      "samples": [
+        "40:13",
+        0
+      ],
+      "vae": [
+        "40:10",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "40:17": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 20,
+      "denoise": 1,
+      "model": [
+        "40:30",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  },
+  "40:37": {
+    "inputs": {
+      "width": [
+        "40:38",
+        0
+      ],
+      "height": [
+        "40:38",
+        1
+      ],
+      "batch_size": 2
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "40:38": {
+    "inputs": {
+      "megapixel": "1.0",
+      "aspect_ratio": "7:5 (Elegant Landscape)",
+      "divisible_by": "64",
+      "custom_ratio": false,
+      "custom_aspect_ratio": "1:1"
+    },
+    "class_type": "FluxResolutionNode",
+    "_meta": {
+      "title": "Flux Resolution Calc"
+    }
+  },
+  "40:30": {
+    "inputs": {
+      "model_path": "svdq-int4_r32-flux.1-krea-dev.safetensors",
+      "cache_threshold": 0,
+      "attention": "nunchaku-fp16",
+      "cpu_offload": "auto",
+      "device_id": 0,
+      "data_type": "bfloat16",
+      "i2f_mode": "enabled"
+    },
+    "class_type": "NunchakuFluxDiTLoader",
+    "_meta": {
+      "title": "Nunchaku FLUX DiT Loader"
+    }
+  },
+  "40:10": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "40:22": {
+    "inputs": {
+      "model": [
+        "40:30",
+        0
+      ],
+      "conditioning": [
+        "39:6",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "BasicGuider"
+    }
+  },
+  "40:16": {
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  }
+}

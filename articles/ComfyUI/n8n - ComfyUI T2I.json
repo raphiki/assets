@@ -1,0 +1,130 @@
+{
+  "name": "ComfyUI T2I",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        192,
+        0
+      ],
+      "id": "6b191a4e-a496-422c-b66d-2c269456323a",
+      "name": "When chat message received",
+      "webhookId": "2187ff59-05c1-48b6-b8eb-7ad5a8bd0a87"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are tasked with generating a JSON object in English (even if the initial user prompt is in another language) containing up to 10 keys for image generation based on a simple design prompt provided by the user. The JSON object should reflect the artistic intent, technical specifications, and thematic elements of the prompt and be compatible with Flux models. Be creative, concise and consistent in your interpretations.\n\nInstructions:\n\n1. Ask the user for a short, simple design prompt (e.g., \"a serene Japanese garden at sunrise\" or \"cyberpunk, city skyline, flying cars\").\n\n2. Analyze the design prompt to extract all relevant artistic, thematic, and technical details.\n\n3. Identify visual style, subjects, colors, mood, composition, lighting, and other distinctive elements.\n\n4. Generate a structured JSON object containing (at minimum) the following top-level keys with very short sentences as values:\n\n- style_name – A catchy, short descriptive phrase that encapsulates the design prompt’s overall identity.\n\n- inspiration – 1–2 artistic styles, artists, or cultural references that align with the prompt.\n\n- scene – A concise description of the overall setting/environment.\n\n- subjects – An array of objects describing each main element in the scene:\n\n    {\n      \"type\": \"robot\",\n      \"description\": \"silver body with glowing blue eyes\",\n      \"position\": \"foreground\",\n      \"pose\": \"standing upright\",\n      \"size\": \"large\",\n      \"expression\": \"neutral\",\n      \"interaction\": \"looking at a floating screen\"\n    }\n\n- style – Artistic rendering style (e.g., \"watercolor\", \"photorealistic\", \"anime\").\n\n- color_palette – Object containing:\n\n\tprimary: hex code for main color\n\n\tsecondary: complementary hex color\n\n\thighlight: accent hex color\n\n\tshadow: depth hex color\n\n- lighting – Description of light source, tone, and direction (e.g., \"soft morning light\", \"neon backlighting\").\n\n- mood – Emotional tone or atmosphere (e.g., \"serene\", \"mysterious\", \"energetic\").\n\n- background – Object describing backdrop:\n\n    type: \"solid\", \"gradient\", \"pattern\", \"scenery\"\n\n    details: description of background elements\n\n- composition – Layout and framing approach (e.g., \"rule of thirds\", \"center focus\", \"top-down view\").\n\n- camera – Virtual camera settings:\n\n\tangle: e.g., \"eye-level\", \"low angle\"\n\n\tdistance: e.g., \"close-up\", \"wide shot\"\n\n\tlens: e.g., \"35mm\", \"wide-angle\"\n\n\tfocus: e.g., \"sharp subject, blurred background\"\n\n- medium – Simulated artistic medium (e.g., \"oil painting\", \"charcoal sketch\", \"3D render\").\n\n- textures – Surface qualities (e.g., \"rough concrete\", \"silky fabric\").\n\n- details – Extra specific attributes (e.g., clothing, weather, materials, accessories).\n\n- effects – Special visual treatments (e.g., \"bokeh blur\", \"lens flare\", \"film grain\").\n\n- themes – 1–2 conceptual or emotional themes in the design.\n\n- usage_notes – 1-2 short guidelines on how to apply the style effectively.\n\n5. Merge everything in one single JSON file and output the raw final JSON file without other extra text before or after. Ensure that all properties in the JSON object reflect the input design prompt."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "b53583c6-3e78-4644-bdfe-7a7d38d20467",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        176
+      ],
+      "id": "8a448cf3-92b2-411c-9dff-5164e32dcad0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "njCZhtlW3gN8DPTg",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflow": "={\n  \"9\": {\n    \"inputs\": {\n      \"filename_prefix\": \"IMG\",\n      \"images\": [\n        \"40:8\",\n        0\n      ]\n    },\n    \"class_type\": \"SaveImage\",\n    \"_meta\": {\n      \"title\": \"Save Image\"\n    }\n  },\n  \"39:6\": {\n    \"inputs\": {\n      \"text\": {{ JSON.stringify($node[\"AI Agent\"].data) }},\n      \"clip\": [\n        \"39:32\",\n        0\n      ]\n    },\n    \"class_type\": \"CLIPTextEncode\",\n    \"_meta\": {\n      \"title\": \"CLIP Text Encode (Prompt)\"\n    }\n  },\n  \"39:32\": {\n    \"inputs\": {\n      \"model_type\": \"flux.1\",\n      \"text_encoder1\": \"t5xxl_fp8_e4m3fn_scaled.safetensors\",\n      \"text_encoder2\": \"clip_l.safetensors\",\n      \"t5_min_length\": 512\n    },\n    \"class_type\": \"NunchakuTextEncoderLoaderV2\",\n    \"_meta\": {\n      \"title\": \"Nunchaku Text Encoder Loader V2\"\n    }\n  },\n  \"40:25\": {\n    \"inputs\": {\n      \"noise_seed\": 617912223649612\n    },\n    \"class_type\": \"RandomNoise\",\n    \"_meta\": {\n      \"title\": \"RandomNoise\"\n    }\n  },\n  \"40:13\": {\n    \"inputs\": {\n      \"noise\": [\n        \"40:25\",\n        0\n      ],\n      \"guider\": [\n        \"40:22\",\n        0\n      ],\n      \"sampler\": [\n        \"40:16\",\n        0\n      ],\n      \"sigmas\": [\n        \"40:17\",\n        0\n      ],\n      \"latent_image\": [\n        \"40:37\",\n        0\n      ]\n    },\n    \"class_type\": \"SamplerCustomAdvanced\",\n    \"_meta\": {\n      \"title\": \"SamplerCustomAdvanced\"\n    }\n  },\n  \"40:8\": {\n    \"inputs\": {\n      \"samples\": [\n        \"40:13\",\n        0\n      ],\n      \"vae\": [\n        \"40:10\",\n        0\n      ]\n    },\n    \"class_type\": \"VAEDecode\",\n    \"_meta\": {\n      \"title\": \"VAE Decode\"\n    }\n  },\n  \"40:17\": {\n    \"inputs\": {\n      \"scheduler\": \"simple\",\n      \"steps\": 20,\n      \"denoise\": 1,\n      \"model\": [\n        \"40:30\",\n        0\n      ]\n    },\n    \"class_type\": \"BasicScheduler\",\n    \"_meta\": {\n      \"title\": \"BasicScheduler\"\n    }\n  },\n  \"40:37\": {\n    \"inputs\": {\n      \"width\": [\n        \"40:38\",\n        0\n      ],\n      \"height\": [\n        \"40:38\",\n        1\n      ],\n      \"batch_size\": 2\n    },\n    \"class_type\": \"EmptyLatentImage\",\n    \"_meta\": {\n      \"title\": \"Empty Latent Image\"\n    }\n  },\n  \"40:38\": {\n    \"inputs\": {\n      \"megapixel\": \"1.0\",\n      \"aspect_ratio\": \"7:5 (Elegant Landscape)\",\n      \"divisible_by\": \"64\",\n      \"custom_ratio\": false,\n      \"custom_aspect_ratio\": \"1:1\"\n    },\n    \"class_type\": \"FluxResolutionNode\",\n    \"_meta\": {\n      \"title\": \"Flux Resolution Calc\"\n    }\n  },\n  \"40:30\": {\n    \"inputs\": {\n      \"model_path\": \"svdq-int4_r32-flux.1-krea-dev.safetensors\",\n      \"cache_threshold\": 0,\n      \"attention\": \"nunchaku-fp16\",\n      \"cpu_offload\": \"auto\",\n      \"device_id\": 0,\n      \"data_type\": \"bfloat16\",\n      \"i2f_mode\": \"enabled\"\n    },\n    \"class_type\": \"NunchakuFluxDiTLoader\",\n    \"_meta\": {\n      \"title\": \"Nunchaku FLUX DiT Loader\"\n    }\n  },\n  \"40:10\": {\n    \"inputs\": {\n      \"vae_name\": \"ae.safetensors\"\n    },\n    \"class_type\": \"VAELoader\",\n    \"_meta\": {\n      \"title\": \"Load VAE\"\n    }\n  },\n  \"40:22\": {\n    \"inputs\": {\n      \"model\": [\n        \"40:30\",\n        0\n      ],\n      \"conditioning\": [\n        \"39:6\",\n        0\n      ]\n    },\n    \"class_type\": \"BasicGuider\",\n    \"_meta\": {\n      \"title\": \"BasicGuider\"\n    }\n  },\n  \"40:16\": {\n    \"inputs\": {\n      \"sampler_name\": \"euler\"\n    },\n    \"class_type\": \"KSamplerSelect\",\n    \"_meta\": {\n      \"title\": \"KSamplerSelect\"\n    }\n  }\n}",
+        "outputFormat": "png"
+      },
+      "type": "n8n-nodes-comfyui.comfyui",
+      "typeVersion": 1,
+      "position": [
+        752,
+        0
+      ],
+      "id": "9a2c0ecb-c0ef-4e21-abfb-4de021e63aac",
+      "name": "ComfyUI",
+      "credentials": {
+        "comfyUIApi": {
+          "id": "65aBuhUmq78FavQm",
+          "name": "ComfyUI account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "ComfyUI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ComfyUI": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "31dca6e0-66cb-4681-8ba1-ef402b729377",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8f955b1c5f9f3c92cb33035b66407ae4adc97b3824fe0a266ebbdb5bb17536a2"
+  },
+  "id": "9PPBYTSnBLQYvOtC",
+  "tags": []
+}
